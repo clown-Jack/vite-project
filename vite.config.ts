@@ -5,6 +5,7 @@ import path from 'path';
 import autoprefixer from 'autoprefixer';
 import windi from 'vite-plugin-windicss';
 import viteEslint from 'vite-plugin-eslint';
+import viteStylelint from 'vite-plugin-stylelint';
 
 //用normalizePath解决windows下的路径问题
 const variablePath = normalizePath(path.resolve('./src/variable.scss'));
@@ -18,7 +19,10 @@ export default defineConfig({
       }
     }),
     windi(),
-    viteEslint()
+    viteEslint(),
+    viteStylelint({
+      exclude: ['windicss', 'node_modules']
+    })
   ],
   css: {
     modules: {
